@@ -1,19 +1,15 @@
 package com.dossmann.appgooglemaps;
 
-import androidx.fragment.app.FragmentActivity;
-
 import android.content.Context;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdate;
-import com.google.android.gms.maps.CameraUpdateFactory;
+import androidx.fragment.app.FragmentActivity;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.clustering.ClusterManager;
 
 import java.util.ArrayList;
@@ -53,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         uiSettings.setMyLocationButtonEnabled(true);
 
         ClusterManager<MyItem> myClusterManager = new ClusterManager<>(myContext, googleMap);
+        googleMap.setOnCameraIdleListener(myClusterManager);
         googleMap.setOnMarkerClickListener(myClusterManager);
         ArrayList<MyItem> items = new ArrayList<>();
         for (int i = 0; i < 10; i++){
